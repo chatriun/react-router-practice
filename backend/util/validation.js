@@ -1,15 +1,15 @@
-function isValidText(value) {
+const isValidText = (value) => {
   return value && value.trim().length > 0;
-}
+};
 
-function isValidDate(value) {
+const isValidDate = (value) => {
   const date = new Date(value);
-  return value && date !== 'Invalid Date';
-}
+  return value && date !== "Invalid Date";
+};
 
-function isValidImageUrl(value) {
-  return value && value.startsWith('http');
-}
+const isValidImageUrl = (value) => {
+  return value && value.startsWith("http");
+};
 
 exports.isValidText = isValidText;
 exports.isValidDate = isValidDate;
