@@ -1,7 +1,5 @@
-// const fs = require("fs");
 const fs = require("node:fs/promises");
 
-//รหัสเฉพาะของอุปกรณ์เครื่อง (คล้ายกับหมายเลขซีเรียล)
 const { v4: generateId } = require("uuid");
 const { NotFoundError } = require("../util/errors");
 
@@ -14,7 +12,6 @@ const writeData = async (data) => {
   await fs.writeFile("films.json", JSON.stringify(data));
 };
 
-// films page
 const getAll = async () => {
   const storedData = await readData();
   if (!storedData.films || storedData.films.length === 0) {
@@ -23,7 +20,6 @@ const getAll = async () => {
   return storedData.films;
 };
 
-// film detail page?
 const get = async (id) => {
   const storedData = await readData();
 
@@ -33,20 +29,17 @@ const get = async (id) => {
 
   const film = storedData.films.find((film) => film.id === id);
   if (!film) {
-    throw new NotFoundError("Could not find event for id" + id);
+    throw new NotFoundError("Could not find film for " + id);
   }
   return film;
 };
 
-// new film page
 const add = async (data) => {
   const storedData = await readData();
-  // เพิ่ม data เข้าไปข้างหน้าใน array
   storedData.films.unshift({ ...data, id: generateId() });
   await writeData(storedData);
 };
 
-// edit film page
 const replace = async (id, data) => {
   const storedData = await readData();
   if (!storedData.films || storedData.films.length === 0) {
@@ -55,22 +48,20 @@ const replace = async (id, data) => {
 
   const filmIndex = storedData.films.findIndex((film) => film.id === id);
   if (filmIndex < 0) {
-    throw new NotFoundError("Could not find event for id" + id);
+    throw new NotFoundError("Could not find film for " + id);
   }
 
-  // ทำไมต้อง replace id
   storedData.films[filmIndex] = { ...storedData.films[filmIndex], ...data };
+
   await writeData(storedData);
 };
 
-// remove film
 const remove = async (id) => {
   const storedData = await readData();
   const updatedData = storedData.films.filter((film) => film.id !== id);
-  await writeData({ films: updatedData });
+  await writeData({ ...storedData, films: updatedData });
 };
 
-// export js แบบเก่า
 exports.getAll = getAll;
 exports.get = get;
 exports.add = add;

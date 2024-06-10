@@ -1,5 +1,18 @@
-import { json, useLoaderData } from "react-router-dom";
+import { json, redirect, useRouteLoaderData } from "react-router-dom";
 import FilmItem from "../components/FilmItem";
+
+export const action = async ({ request, params }) => {
+  const filmId = params.filmId;
+  const response = await fetch("http://localhost:8080/films/" + filmId, {
+    method: request.method,
+  });
+
+  if (!response.ok) {
+    throw json({ message: "could not delete a film" }, { status: 500 });
+  }
+
+  return redirect("/films");
+};
 
 export const loader = async ({ params }) => {
   const filmId = params.filmId;
@@ -15,7 +28,7 @@ export const loader = async ({ params }) => {
 };
 
 const FilmDetailPage = () => {
-  const film = useLoaderData();
+  const film = useRouteLoaderData("film-detail");
   return (
     <>
       <FilmItem film={film} />

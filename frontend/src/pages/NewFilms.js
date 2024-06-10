@@ -1,5 +1,7 @@
+import FilmForm from "../components/FilmForm";
+
 const NewFilmPage = () => {
-  return <h1>new film</h1>;
+  return <FilmForm method="post" />;
 };
 
 export default NewFilmPage;

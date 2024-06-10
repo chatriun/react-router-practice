@@ -1,6 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useSubmit } from "react-router-dom";
 
 const FilmItem = ({ film }) => {
+  const submit = useSubmit();
+  const handleDelete = () => {
+    const confirm = window.confirm("are you sure?");
+
+    if (confirm) {
+      submit(null, { method: "delete" });
+    }
+  };
+
   return (
     <>
       <h1 style={{ textDecoration: "#8A2BE2 wavy underline" }}>{film.title}</h1>
@@ -9,13 +18,29 @@ const FilmItem = ({ film }) => {
       <p style={{ width: 600, marginBottom: "60px" }}>
         <span style={{ textOverflow: "ellipsis" }}>{film.description}</span>
       </p>
-      <p>
-        {`✦ back to `}
-        <Link to=".." relative="path">
-          films
-        </Link>
-        ✦
-      </p>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          gap: 24,
+        }}
+      >
+        <span>
+          {`( ↩︎ back to `}
+          <Link to=".." relative="path">
+            films
+          </Link>
+          {` )`}
+        </span>
+        <span>
+          <Link to="edit">{`( ✎ edit )`}</Link>
+        </span>
+        <span>
+          {/* {`( cancel ✖︎)`} */}
+          <button onClick={handleDelete}>{`( delete ✖︎)`}</button>
+        </span>
+      </div>
     </>
   );
 };

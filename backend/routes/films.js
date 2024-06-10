@@ -11,7 +11,6 @@ const router = express.Router();
 router.get("/", async (req, res, next) => {
   try {
     const films = await getAll();
-    // ส่งกลับออกไปในรูปแบบ json
     res.json({ films: films });
   } catch (error) {
     // #nextแล้วไปไหน เดี๋ยวมาหาคำตอบ55
@@ -66,7 +65,7 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-router.patch("/", async (req, res, next) => {
+router.patch("/:filmId", async (req, res, next) => {
   const data = req.body;
 
   let errors = {};
@@ -94,10 +93,9 @@ router.patch("/", async (req, res, next) => {
   }
 
   try {
-    await replace(req.params.id, data);
+    await replace(req.params.filmId, data);
     res.json({
       message: "Film updated :)",
-      film: data,
     });
   } catch (error) {
     next(error);
@@ -106,12 +104,11 @@ router.patch("/", async (req, res, next) => {
 
 router.delete("/:filmId", async (req, res, next) => {
   try {
-    await remove(req.params.id);
+    await remove(req.params.filmId);
     res.json({ message: "Film deleted" });
   } catch (error) {
     next(error);
   }
 });
 
-// ส่ง router ที่เราสร้างออกไปนอกไฟล์
 module.exports = router;
