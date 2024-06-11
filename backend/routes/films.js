@@ -43,8 +43,8 @@ router.post("/", async (req, res, next) => {
     errors.date = "Invalid date";
   }
 
-  if (!isValidImageUrl(data.image)) {
-    errors.image = "Invalid image";
+  if (!isValidImageUrl(data.url)) {
+    errors.url = "Invalid url";
   }
 
   if (Object.keys(errors).length > 0) {
@@ -81,8 +81,8 @@ router.patch("/:filmId", async (req, res, next) => {
     errors.date = "Invalid date";
   }
 
-  if (!isValidImageUrl(data.image)) {
-    errors.image = "Invalid image";
+  if (!isValidImageUrl(data.url)) {
+    errors.url = "Invalid url";
   }
 
   if (Object.keys(errors).length > 0) {

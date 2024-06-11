@@ -29,7 +29,7 @@ const FilmsList = ({ films }) => {
               style={{ textDecoration: "none", color: "inherit" }}
             >
               <h1>{film.title}</h1>
-              <img src={film.image} style={{ height: "auto", width: 400 }} />
+              <img src={film.url} style={{ height: "auto", width: 400 }} />
             </Link>
           </li>
         ))}

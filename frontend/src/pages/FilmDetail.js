@@ -1,9 +1,9 @@
 import { json, redirect, useRouteLoaderData } from "react-router-dom";
 import FilmItem from "../components/FilmItem";
 
-export const action = async ({ request, params }) => {
+export const deleteFilmAction = async ({ request, params }) => {
   const filmId = params.filmId;
-  const response = await fetch("http://localhost:8080/films/" + filmId, {
+  const response = await fetch(`http://localhost:8080/films/${filmId}`, {
     method: request.method,
   });
 
@@ -17,7 +17,7 @@ export const action = async ({ request, params }) => {
 export const loader = async ({ params }) => {
   const filmId = params.filmId;
 
-  const response = await fetch("http://localhost:8080/films/" + filmId);
+  const response = await fetch(`http://localhost:8080/films/${filmId}`);
 
   if (!response.ok) {
     throw json({ message: "could not found a film" }, { status: 500 });

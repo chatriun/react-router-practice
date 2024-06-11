@@ -3,15 +3,15 @@ import RootLayout from "./pages/RootLayout";
 import HomePage from "./pages/Home";
 import FilmsPage, { loader as filmsLoader } from "./pages/Films";
 
-import NewFilmPage from "./pages/NewFilms";
+import NewFilmPage, { newFilmAction } from "./pages/NewFilms";
 import RootFilmLayout from "./pages/RootFilmLayout";
 import FilmDetailPage, {
   loader as filmDetailLoader,
-  action as deleteFilmAction,
+  deleteFilmAction,
 } from "./pages/FilmDetail";
 import EditFilmPage from "./pages/EditFilm";
 import ErrorPage from "./pages/Error";
-import { action as filmEditAction } from "./components/FilmForm";
+import { editFilmAction } from "./components/FilmForm";
 
 const router = createBrowserRouter([
   {
@@ -45,15 +45,14 @@ const router = createBrowserRouter([
               {
                 path: "edit",
                 element: <EditFilmPage />,
-                action: filmEditAction,
+                action: editFilmAction,
               },
             ],
           },
           {
-            // TODO: split action(new,edit)
             path: "new",
             element: <NewFilmPage />,
-            action: filmEditAction,
+            action: newFilmAction,
           },
         ],
       },
