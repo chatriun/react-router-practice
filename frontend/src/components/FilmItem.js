@@ -34,7 +34,7 @@ const FilmItem = ({ film }) => {
           <Link to="edit">{`( ✎ edit )`}</Link>
         </span>
         <span>
-          <button onClick={handleDelete}>{`( delete ✖︎)`}</button>
+          <button type="button" onClick={handleDelete}>{`( delete ✖︎)`}</button>
         </span>
       </div>
     </>

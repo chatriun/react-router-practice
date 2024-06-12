@@ -1,15 +1,34 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const MainNavigation = () => {
+  const styleActive = {
+    color: "#8A2BE2",
+    fontWeight: "bold",
+  };
+
   return (
     <>
       <nav>
-        <ul>
+        <ul style={{ display: "flex", flexDirection: "row", gap: 16 }}>
           <li>
-            <Link to="/">Home</Link>
+            <NavLink
+              to="/"
+              style={({ isActive }) =>
+                isActive ? styleActive : { textDecoration: "none" }
+              }
+            >
+              Home
+            </NavLink>
           </li>
           <li>
-            <Link to="/films">Films</Link>
+            <NavLink
+              to="/films"
+              style={({ isActive }) =>
+                isActive ? styleActive : { textDecoration: "none" }
+              }
+            >
+              Films
+            </NavLink>
           </li>
         </ul>
       </nav>

@@ -1,5 +1,6 @@
-import { json, useLoaderData } from "react-router-dom";
+import { Link, json, useLoaderData } from "react-router-dom";
 import FilmsList from "../components/FilmsList";
+import { Box, Grid } from "@mui/material";
 
 export const loader = async () => {
   const response = await fetch("http://localhost:8080/films");
@@ -16,9 +17,26 @@ const FilmsPage = () => {
   const films = useLoaderData();
 
   return (
-    <>
-      <FilmsList films={films} />
-    </>
+    <Box>
+      <button type="button">
+        <Link
+          to="new"
+          style={{
+            color: "inherit",
+            textDecoration: "none",
+          }}
+        >
+          new film
+        </Link>
+      </button>
+      <Grid container display="flex" justifyContent="space-between">
+        {films.map((film) => (
+          <Grid item xs={3} md={2}>
+            <FilmsList film={film} />
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
   );
 };
 
