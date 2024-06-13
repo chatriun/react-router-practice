@@ -29,13 +29,12 @@ const FilmsPage = () => {
           new film
         </Link>
       </button>
-      <Grid container display="flex" justifyContent="space-between">
+
+      <Box width="100%" display="flex" flexWrap="wrap" gap={5} py={12}>
         {films.map((film) => (
-          <Grid item xs={3} md={2}>
-            <FilmsList film={film} />
-          </Grid>
+          <FilmsList key={film.id} film={film} />
         ))}
-      </Grid>
+      </Box>
     </Box>
   );
 };
