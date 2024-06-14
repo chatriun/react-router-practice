@@ -1,38 +1,36 @@
+import { Box, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
 
 const MainNavigation = () => {
   const styleActive = {
-    color: "#8A2BE2",
-    fontWeight: "bold",
+    color: "white",
+    textDecoration: "white wavy underline",
   };
 
   return (
-    <>
-      <nav>
-        <ul style={{ display: "flex", flexDirection: "row", gap: 16 }}>
-          <li>
-            <NavLink
-              to="/"
-              style={({ isActive }) =>
-                isActive ? styleActive : { textDecoration: "none" }
-              }
-            >
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/films"
-              style={({ isActive }) =>
-                isActive ? styleActive : { textDecoration: "none" }
-              }
-            >
-              Films
-            </NavLink>
-          </li>
-        </ul>
-      </nav>
-    </>
+    <Box width="100%" px={2} py={2}>
+      <Box px={3} py={1} borderRadius={12} sx={{ backgroundColor: "#8A2BE2" }}>
+        <Box display="flex" justifyContent="center" gap={2}>
+          <NavLink
+            to="/"
+            style={({ isActive }) =>
+              isActive ? styleActive : { textDecoration: "none" }
+            }
+          >
+            <Typography variant="button">Home</Typography>
+          </NavLink>
+
+          <NavLink
+            to="/films"
+            style={({ isActive }) =>
+              isActive ? styleActive : { textDecoration: "none" }
+            }
+          >
+            <Typography variant="button">Films</Typography>
+          </NavLink>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

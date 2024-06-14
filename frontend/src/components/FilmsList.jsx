@@ -5,35 +5,37 @@ const FilmsList = ({ film }) => {
   return (
     <Link to={film.id} style={{ textDecoration: "none", color: "inherit" }}>
       <Box
-        width={235}
-        // height="100%"
+        width="100%"
+        height="100%"
         p={1}
         border={1}
         borderColor="black"
         borderRadius={4}
         backgroundColor="white"
-        style={{ overflow: "hidden" }}
+        sx={{ overflow: "hidden" }}
       >
-        <Box>
+        <Box display="flex" height={320} sx={{ overflow: "hidden" }}>
           <img
             src={film.url}
             alt={film.title}
-            width="100%"
-            // width={235}
-            height={319.5}
-            style={{ objectFit: "cover", borderRadius: "12px" }}
+            width="auto"
+            height="100%"
+            style={{
+              objectFit: "cover",
+              aspectRatio: "auto",
+              borderRadius: "12px",
+              overflow: "hidden",
+            }}
           />
         </Box>
-        {/* TODO: textOverflow: "ellipsis" not work
-        now>> width*/}
         <Typography
-          style={{
-            width: "100%",
-            color: "black",
-            whiteSpace: "nowrap",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-          }}
+          variant="body1"
+          fontWeight="bold"
+          width="100%"
+          whiteSpace="nowrap"
+          overflow="hidden"
+          textOverflow="ellipsis"
+          sx={{ color: "black" }}
         >
           {film.title}
         </Typography>

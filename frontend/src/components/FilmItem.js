@@ -1,7 +1,9 @@
 import { Box, Button, Typography } from "@mui/material";
-import { Link, useSubmit } from "react-router-dom";
+import Grid from "@mui/material/Unstable_Grid2/Grid2";
+import { useNavigate, useSubmit } from "react-router-dom";
 
 const FilmItem = ({ film }) => {
+  const navigate = useNavigate();
   const submit = useSubmit();
   const handleDelete = () => {
     const confirm = window.confirm("are you sure?");
@@ -12,117 +14,94 @@ const FilmItem = ({ film }) => {
   };
 
   return (
-    <Box
-      display="flex"
-      width="100%"
-      height="100%"
-      p={3}
-      border={1}
-      borderColor="black"
-      borderRadius={4}
-      backgroundColor="white"
-      overflow="hidden"
-    >
-      <Box
+    <Box width="100%" p={2}>
+      <Grid
+        container
         display="flex"
-        flexDirection="column"
-        justifyContent="space-between"
-        width={200}
+        alignItems="center"
+        spacing={2}
+        m={0}
+        p={1}
+        border={1}
+        borderColor="black"
+        borderRadius={4}
+        backgroundColor="white"
       >
-        <Typography variant="h1" lineHeight="30px" style={{ color: "#8A2BE2" }}>
-          ✸
-        </Typography>
-        <Typography
-          variant="h3"
-          fontWeight="bolder"
-          mb={3}
-          lineHeight="40px"
-          style={{ color: "black" }}
-        >
-          {film.title}
-        </Typography>
-      </Box>
-
-      <Box
-        display="flex"
-        flexDirection="column"
-        justifyContent="space-between"
-        width={400}
-      >
-        <Typography
-          variant="body2"
-          fontWeight="bold"
-          style={{ color: "black" }}
-        >
-          {film.date}
-        </Typography>
-        <p
-          style={{
-            color: "black",
-            marginBottom: "60px",
-          }}
-        >
-          <span
-            style={{
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-            }}
+        <Grid item sx={12} md={4}>
+          <Box
+            display="flex"
+            flexDirection="column"
+            justifyContent="space-between"
           >
-            {film.description}
-          </span>
-        </p>
-        <Box display="flex" gap={2}>
-          <Button
-            variant="outlined"
-            style={{ borderRadius: 20, borderColor: "#8A2BE2" }}
-          >
-            <Link
-              to=".."
-              relative="path"
-              style={{
-                textDecoration: "none",
-                color: "inherit",
-              }}
+            <Typography
+              variant="h3"
+              fontWeight="bolder"
+              width="100%"
+              textOverflow="ellipsis"
+              sx={{ color: "black" }}
+              lineHeight="42px"
+              overflow="hidden"
+              mr="auto"
+              mb={1}
             >
-              <Typography variant="button" style={{ color: "#8A2BE2" }}>
-                ↩︎ back
-              </Typography>
-            </Link>
-          </Button>
-          <Button
-            variant="contained"
-            size="small"
-            style={{ borderRadius: 20, backgroundColor: "#bf94e4" }}
-          >
-            <Link
-              to="edit"
-              style={{ textDecoration: "none", color: "inherit" }}
-            >
-              ✎ edit
-            </Link>
-          </Button>
-          <Button
-            variant="contained"
-            size="small"
-            style={{ borderRadius: 20, backgroundColor: "#bf94e4" }}
-            onClick={handleDelete}
-          >
-            <Typography variant="button" style={{ color: "inherit" }}>
-              ✖︎ delete
+              {film.title}
             </Typography>
-          </Button>
-        </Box>
-      </Box>
-      <img
-        src={film.url}
-        alt={film.title}
-        style={{
-          height: "auto",
-          width: 600,
-          objectFit: "cover",
-          borderRadius: "12px",
-        }}
-      />
+            <Typography
+              variant="body2"
+              fontWeight="bold"
+              mb={5}
+              sx={{ color: "#8A2BE2" }}
+            >
+              {film.date}
+            </Typography>
+            <Typography variant="subtitle2" mb={4} sx={{ color: "black" }}>
+              {film.description}
+            </Typography>
+            <Box item display="flex" gap={2} mt="auto" mb={1}>
+              <Button
+                variant="outlined"
+                onClick={() => navigate("..", { relative: "path" })}
+                sx={{ borderRadius: 20, borderColor: "#8A2BE2" }}
+              >
+                <Typography variant="button" sx={{ color: "#8A2BE2" }}>
+                  ↩︎ back
+                </Typography>
+              </Button>
+              <Button
+                variant="contained"
+                size="small"
+                onClick={() => navigate("edit")}
+                sx={{ borderRadius: 20, backgroundColor: "#8A2BE2" }}
+              >
+                <Typography variant="button" sx={{ color: "white" }}>
+                  ✎ edit
+                </Typography>
+              </Button>
+              <Button
+                variant="contained"
+                size="small"
+                sx={{ borderRadius: 20, backgroundColor: "#8A2BE2" }}
+                onClick={handleDelete}
+              >
+                <Typography variant="button" sx={{ color: "inherit" }}>
+                  ✖︎ delete
+                </Typography>
+              </Button>
+            </Box>
+          </Box>
+        </Grid>
+        <Grid item xs={12} md={8}>
+          <img
+            src={film.url}
+            alt={film.title}
+            style={{
+              maxWidth: "100%",
+              height: "auto",
+              borderRadius: "12px",
+            }}
+          />
+        </Grid>
+      </Grid>
     </Box>
   );
 };

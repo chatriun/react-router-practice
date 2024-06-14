@@ -1,6 +1,7 @@
-import { Link, json, useLoaderData } from "react-router-dom";
+import { json, useLoaderData, useNavigate } from "react-router-dom";
 import FilmsList from "../components/FilmsList";
-import { Box, Grid } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2/Grid2";
 
 export const loader = async () => {
   const response = await fetch("http://localhost:8080/films");
@@ -14,27 +15,31 @@ export const loader = async () => {
 };
 
 const FilmsPage = () => {
+  const navigate = useNavigate();
   const films = useLoaderData();
 
   return (
-    <Box>
-      <button type="button">
-        <Link
-          to="new"
-          style={{
-            color: "inherit",
-            textDecoration: "none",
-          }}
-        >
-          new film
-        </Link>
-      </button>
-
-      <Box width="100%" display="flex" flexWrap="wrap" gap={5} py={12}>
+    <Box width="100%" display="flex" flexWrap="wrap" px={2} py={4}>
+      <Grid container spacing={2}>
         {films.map((film) => (
-          <FilmsList key={film.id} film={film} />
+          <Grid item sx={12} md={12 / 5} xl={12 / 8}>
+            <FilmsList key={film.id} film={film} />
+          </Grid>
         ))}
-      </Box>
+        <Grid>
+          {/* TODO: hover button */}
+          <Button
+            variant="contained"
+            size="small"
+            onClick={() => navigate("new")}
+            sx={{ borderRadius: 20, backgroundColor: "#8A2BE2" }}
+          >
+            <Typography variant="button" sx={{ color: "inherit" }}>
+              + add film
+            </Typography>
+          </Button>
+        </Grid>
+      </Grid>
     </Box>
   );
 };

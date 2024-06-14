@@ -29,11 +29,7 @@ export const loader = async ({ params }) => {
 
 const FilmDetailPage = () => {
   const film = useRouteLoaderData("film-detail");
-  return (
-    <>
-      <FilmItem film={film} />
-    </>
-  );
+  return <FilmItem film={film} />;
 };
 
 export default FilmDetailPage;
