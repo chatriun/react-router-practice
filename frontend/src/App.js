@@ -9,9 +9,8 @@ import FilmDetailPage, {
   loader as filmDetailLoader,
   deleteFilmAction,
 } from "./pages/FilmDetail";
-import EditFilmPage from "./pages/EditFilm";
+import EditFilmPage, { editFilmAction } from "./pages/EditFilm";
 import ErrorPage from "./pages/Error";
-import { editFilmAction } from "./components/FilmForm";
 
 const router = createBrowserRouter([
   {
@@ -25,7 +24,9 @@ const router = createBrowserRouter([
       },
       {
         path: "films",
+
         element: <RootFilmLayout />,
+
         children: [
           {
             index: true,
