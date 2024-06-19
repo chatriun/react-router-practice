@@ -1,4 +1,5 @@
 import {
+  Form,
   json,
   useLoaderData,
   useNavigate,
@@ -6,15 +7,16 @@ import {
 } from "react-router-dom";
 import FilmsList from "../components/FilmsList";
 import {
-  Autocomplete,
   Box,
   Button,
+  InputAdornment,
   TextField,
   Typography,
 } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import AddIcon from "@mui/icons-material/Add";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import MovieFilterIcon from "@mui/icons-material/MovieFilter";
 
 export const loader = async () => {
   const response = await fetch("http://localhost:8080/films");
@@ -34,15 +36,27 @@ const FilmsPage = () => {
   const navigate = useNavigate();
   const films = useLoaderData();
 
-  const handleSearch = (_, film) => {
-    const searchTitle = film.map((film) => film.title);
+  const handleSearch = (event) => {
+    event.preventDefault();
 
-    const querySearch = new URLSearchParams({ searchFilm: searchTitle });
+    const formData = new FormData(event.target);
+    const film = formData.get("searchFilm");
+
+    const querySearch = new URLSearchParams({ searchFilm: film });
     const querySearchString = querySearch.toString();
 
     setSearchParams(querySearchString);
-    setSearchFilm(film);
   };
+
+  const searchFilmQs = searchParams.get("searchFilm");
+
+  useEffect(() => {
+    const searchFilmLc = String(searchFilmQs).toLowerCase();
+    const searchFilms = films.filter((film) =>
+      film.title.toLowerCase().includes(searchFilmLc)
+    );
+    setSearchFilm(searchFilms);
+  }, [searchFilmQs, films]);
 
   return (
     <Box
@@ -54,25 +68,25 @@ const FilmsPage = () => {
       py={4}
       backgroundColor="white"
     >
-      <Box display="flex" width="100%" mb={3}>
-        <Autocomplete
-          multiple
-          limitTags={3}
-          options={films}
-          getOptionLabel={(option) => option.title}
-          isOptionEqualToValue={(options, value) =>
-            options.title === value.title
-          }
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              variant="outlined"
-              label="enter film title"
-            />
-          )}
-          onChange={handleSearch}
-        />
-      </Box>
+      <Form onSubmit={handleSearch}>
+        <Box width={300} display="flex" alignItems="center">
+          <TextField
+            name="searchFilm"
+            variant="outlined"
+            size="small"
+            label="search film..."
+            required
+            sx={{ my: 3 }}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <MovieFilterIcon sx={{ color: "black" }} />
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Box>
+      </Form>
       <Grid container width="100%" spacing={2}>
         {searchFilm.length > 0 ? (
           searchFilm.map((film) => (
