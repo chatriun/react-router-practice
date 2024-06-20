@@ -31,6 +31,7 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <FilmsPage />,
+            shouldRevalidate: () => false,
             loader: filmsLoader,
           },
           {
