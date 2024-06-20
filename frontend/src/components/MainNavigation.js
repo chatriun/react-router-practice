@@ -8,7 +8,7 @@ const MainNavigation = () => {
   };
 
   return (
-    <Box width="100%" px={2} py={2}>
+    <Box width="100%">
       <Box px={3} py={1} borderRadius={12} sx={{ backgroundColor: "#8A2BE2" }}>
         <Box display="flex" justifyContent="center" gap={2}>
           <NavLink
