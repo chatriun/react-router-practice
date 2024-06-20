@@ -1,5 +1,5 @@
 import { json, redirect } from "react-router-dom";
-import FilmForm from "../components/FilmForm";
+import FilmUseSubmitForm from "../components/FormUseSubmit";
 
 export const newFilmAction = async ({ request }) => {
   const data = await request.formData();
@@ -31,7 +31,7 @@ export const newFilmAction = async ({ request }) => {
 };
 
 const NewFilmPage = () => {
-  return <FilmForm method="post" />;
+  return <FilmUseSubmitForm />;
 };
 
 export default NewFilmPage;

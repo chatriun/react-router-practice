@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import {
   Form,
   Link,
@@ -7,30 +7,33 @@ import {
   useSubmit,
 } from "react-router-dom";
 
-// TODO: submit add & edit film form with useSubmit()
-const FilmForm = ({ method, film }) => {
+const FilmUseSubmitForm = ({ film }) => {
   const navigation = useNavigation();
   const submit = useSubmit();
   const data = useActionData();
 
   const isSubmit = navigation.state === "submitting";
 
-  const handleSave = () => {
-    console.log(data);
-    if (method === "post") {
-      submit(undefined, { method: "POST" });
-    }
+  const handleSubmit = (event) => {
+    const formData = new FormData(event.target);
+    const newFilm = Object.fromEntries(formData.entries());
+
+    submit(newFilm, { method: "POST" });
   };
 
   return (
-    <Box width="100%" p={2}>
-      <Form
-        method={method}
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleSave();
-        }}
-      >
+    <Box
+      width="100%"
+      display="flex"
+      flexDirection="column"
+      flexWrap="wrap"
+      borderRadius={4}
+      px={2}
+      py={3}
+      backgroundColor="#f5f5f5"
+    >
+      <Form method="post" onSubmit={handleSubmit}>
+        <Typography variant=""></Typography>
         <h3>add new film ♡</h3>
         {data && data.errors && (
           <ul>
@@ -97,4 +100,4 @@ const FilmForm = ({ method, film }) => {
   );
 };
 
-export default FilmForm;
+export default FilmUseSubmitForm;

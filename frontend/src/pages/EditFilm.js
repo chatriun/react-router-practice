@@ -1,5 +1,5 @@
 import { json, redirect, useRouteLoaderData } from "react-router-dom";
-import FilmForm from "../components/FilmForm";
+import FilmActionForm from "../components/FormAction";
 
 export const editFilmAction = async ({ request, params }) => {
   const filmId = params.filmId;
@@ -33,7 +33,7 @@ const EditFilmPage = () => {
   return (
     <>
       <h1>edit film</h1>
-      <FilmForm method="patch" film={film} />
+      <FilmActionForm film={film} />
     </>
   );
 };
