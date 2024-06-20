@@ -17,19 +17,17 @@ const FilmItem = ({ film }) => {
   };
 
   return (
-    <Box p={2}>
+    <Box>
       <Grid
         container
         display="flex"
         spacing={2}
         m={0}
         p={2}
-        border={1}
-        borderColor="black"
         borderRadius={4}
         backgroundColor="white"
       >
-        <Grid item xs={12} md={2} display="flex" flexDirection="column" gap={2}>
+        <Grid xs={12} md={2} display="flex" flexDirection="column" gap={2}>
           <Typography
             fontSize={{ xs: 0, md: 150, xl: 220 }}
             lineHeight={{ md: 0.7 }}
@@ -51,8 +49,7 @@ const FilmItem = ({ film }) => {
           </Typography>
         </Grid>
         <Grid
-          item
-          sx={12}
+          xs={12}
           md={3}
           display="flex"
           flexDirection="column"
@@ -69,7 +66,7 @@ const FilmItem = ({ film }) => {
           <Typography variant="subtitle2" mb={4} sx={{ color: "black" }}>
             {film.description}
           </Typography>
-          <Box item display="flex" gap={2} mt="auto" mb={1}>
+          <Box display="flex" gap={2} mt="auto" mb={1}>
             <Button
               variant="outlined"
               onClick={() => navigate("..", { relative: "path" })}
@@ -137,7 +134,7 @@ const FilmItem = ({ film }) => {
             </Button>
           </Box>
         </Grid>
-        <Grid item xs={12} md={7}>
+        <Grid xs={12} md={7}>
           <img
             src={film.url}
             alt={film.title}
