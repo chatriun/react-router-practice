@@ -30,12 +30,7 @@ export const editFilmAction = async ({ request, params }) => {
 const EditFilmPage = () => {
   const film = useRouteLoaderData("film-detail");
 
-  return (
-    <>
-      <h1>edit film</h1>
-      <FilmActionForm film={film} />
-    </>
-  );
+  return <FilmActionForm film={film} />;
 };
 
 export default EditFilmPage;

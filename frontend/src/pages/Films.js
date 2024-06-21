@@ -6,12 +6,13 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import FilmsList from "../components/FilmsList";
-import { Box, Button, TextField, Typography, styled } from "@mui/material";
+import { Box, Button, Typography, styled } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import AddIcon from "@mui/icons-material/Add";
 import { useEffect, useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import CancelIcon from "@mui/icons-material/Cancel";
+import { StyledButton, StyledTextField } from "../style/styling";
 
 export const loader = async () => {
   const response = await fetch("http://localhost:8080/films");
@@ -24,33 +25,9 @@ export const loader = async () => {
   }
 };
 
-const StyledButton = styled(Button)({
+const StyledIconButton = styled(Button)({
   padding: 0,
   minWidth: 0,
-});
-const StyledTextField = styled(TextField)({
-  "& label": {
-    color: "black",
-  },
-  "& label.Mui-focused": {
-    fontWeight: "bold",
-    color: "#8A2BE2",
-  },
-  "& .MuiOutlinedInput-root": {
-    "& input": {
-      color: "black",
-    },
-    "& fieldset": {
-      borderRadius: "12px",
-      borderColor: "black",
-    },
-    "&:hover fieldset": {
-      borderColor: "#9569bd",
-    },
-    "&.Mui-focused fieldset": {
-      borderColor: "#8A2BE2",
-    },
-  },
 });
 
 const FilmsPage = () => {
@@ -103,37 +80,41 @@ const FilmsPage = () => {
       py={3}
       backgroundColor="#f5f5f5"
     >
-      <Form
-        onSubmit={handleSearch}
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          paddingBottom: "24px",
-        }}
-      >
-        <Box width={300} display="flex" alignItems="center">
-          <StyledTextField
-            name="searchFilm"
-            size="small"
-            label="search film..."
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-            sx={{ my: 3 }}
-            InputProps={{
-              endAdornment: (
-                <Box display="flex" gap={1}>
-                  <StyledButton onClick={handleClearSearch}>
-                    <CancelIcon sx={{ color: "grey" }} />
-                  </StyledButton>
-                  <StyledButton type="submit">
-                    <SearchIcon sx={{ color: "black" }} />
-                  </StyledButton>
-                </Box>
-              ),
-            }}
-          />
-        </Box>
-      </Form>
+      <Box display="flex" justifyContent="center" gap={2} pb={3} my={3}>
+        <Form onSubmit={handleSearch}>
+          <Box display="flex" alignItems="center">
+            <StyledTextField
+              label="search film..."
+              name="searchFilm"
+              size="small"
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+              InputProps={{
+                endAdornment: (
+                  <Box display="flex" gap={1}>
+                    <StyledIconButton onClick={handleClearSearch}>
+                      <CancelIcon sx={{ color: "black" }} />
+                    </StyledIconButton>
+                    <StyledIconButton type="submit">
+                      <SearchIcon sx={{ color: "black" }} />
+                    </StyledIconButton>
+                  </Box>
+                ),
+              }}
+            />
+          </Box>
+        </Form>
+        <StyledButton
+          variant="contained"
+          size="small"
+          onClick={() => navigate("new")}
+        >
+          <AddIcon fontSize="small" sx={{ color: "white" }} />
+          <Typography variant="button" sx={{ color: "white" }}>
+            add film
+          </Typography>
+        </StyledButton>
+      </Box>
 
       <Grid container width="100%" spacing={2}>
         {searchFilm.map((film) => (
@@ -141,31 +122,6 @@ const FilmsPage = () => {
             <FilmsList film={film} />
           </Grid>
         ))}
-        <Grid
-          xs={12}
-          md={12 / 5}
-          xl={12 / 7}
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <Button
-            variant="contained"
-            size="small"
-            onClick={() => navigate("new")}
-            sx={{
-              borderRadius: 20,
-              backgroundColor: "#8A2BE2",
-              alignItems: "center",
-              gap: "2px",
-            }}
-          >
-            <AddIcon fontSize="small" />
-            <Typography variant="button" sx={{ color: "inherit" }}>
-              add film
-            </Typography>
-          </Button>
-        </Grid>
       </Grid>
     </Box>
   );
