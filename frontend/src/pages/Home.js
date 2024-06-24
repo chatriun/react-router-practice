@@ -2,6 +2,7 @@ import { Box, Typography } from "@mui/material";
 import { StyledButton } from "../style/styling";
 import { useNavigate } from "react-router-dom";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
+import MovieFilterIcon from "@mui/icons-material/MovieFilter";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -66,13 +67,12 @@ const HomePage = () => {
           standard dummy text ever since the 1500s, when an unknown printer took
           a galley of type and scrambled it to make a type specimen book.
         </Typography>
-        <Box display="flex" justifyContent="space-between">
+        <Box display="flex" justifyContent="flex-start" gap={2}>
           <StyledButton
             variant="contained"
             size="small"
             onClick={() => navigate("/films")}
             sx={{
-              mr: "auto",
               px: 3,
               gap: 0.5,
             }}
@@ -81,6 +81,14 @@ const HomePage = () => {
             <Typography variant="button" sx={{ color: "white" }}>
               get start
             </Typography>
+          </StyledButton>
+          <StyledButton
+            variant="outlined"
+            size="small"
+            border="2px"
+            onClick={() => navigate("/films/new")}
+          >
+            <MovieFilterIcon fontSize="medium" sx={{ color: "#8A2BE2" }} />
           </StyledButton>
         </Box>
       </Box>

@@ -8,11 +8,11 @@ import {
 import FilmsList from "../components/FilmsList";
 import { Box, Button, Typography, styled } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
-import AddIcon from "@mui/icons-material/Add";
 import { useEffect, useState } from "react";
+import { StyledButton, StyledTextField } from "../style/styling";
+import AddIcon from "@mui/icons-material/Add";
 import SearchIcon from "@mui/icons-material/Search";
 import CancelIcon from "@mui/icons-material/Cancel";
-import { StyledButton, StyledTextField } from "../style/styling";
 
 export const loader = async () => {
   const response = await fetch("http://localhost:8080/films");
