@@ -9,7 +9,6 @@ import {
 import { StyledButton, StyledTextField } from "../style/styling";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import MovieFilterIcon from "@mui/icons-material/MovieFilter";
-import EditNoteIcon from "@mui/icons-material/EditNote";
 import CloseIcon from "@mui/icons-material/Close";
 
 const FilmUseSubmitForm = ({ film }) => {
@@ -44,7 +43,6 @@ const FilmUseSubmitForm = ({ film }) => {
         display="flex"
         flexDirection="column"
         justifyContent="space-between"
-        // alignItems="center"
         xs={12}
         md={4}
       >
@@ -92,7 +90,6 @@ const FilmUseSubmitForm = ({ film }) => {
               name="title"
               type="text"
               size="small"
-              required
               defaultValue={film ? film.title : ""}
             />
             {/* TODO: color icon */}
@@ -100,7 +97,6 @@ const FilmUseSubmitForm = ({ film }) => {
               name="date"
               type="date"
               size="small"
-              required
               defaultValue={film ? film.date : ""}
             />
             <StyledTextField
@@ -108,7 +104,6 @@ const FilmUseSubmitForm = ({ film }) => {
               name="url"
               type="text"
               size="small"
-              required
               defaultValue={film ? film.url : ""}
             />
             <StyledTextField
@@ -117,7 +112,6 @@ const FilmUseSubmitForm = ({ film }) => {
               type="text"
               size="small"
               multiline
-              required
               defaultValue={film ? film.description : ""}
             />
             <Box

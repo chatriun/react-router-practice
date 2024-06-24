@@ -20,6 +20,10 @@ export const editFilmAction = async ({ request, params }) => {
     body: JSON.stringify(editedData),
   });
 
+  if (response.status === 422) {
+    return response;
+  }
+
   if (!response.ok) {
     throw json({ message: "Could not edit this film..." }, { status: 500 });
   }

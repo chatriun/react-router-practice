@@ -22,22 +22,11 @@ const FilmActionForm = ({ film }) => {
       container
       flexWrap="wrap"
       borderRadius={4}
-      px={2}
-      py={3}
+      p={2}
       m={0}
       backgroundColor="#f5f5f5"
       spacing={2}
     >
-      {/* TODO: handle error */}
-      {/* {data && data.errors && (
-          <ul>
-            {Object.values(data.errors).map((error) => (
-              <li key={error}>
-                <span style={{ color: "red" }}>{error}</span>
-              </li>
-            ))}
-          </ul>
-        )} */}
       <Grid
         display="flex"
         flexDirection="column"
@@ -61,9 +50,7 @@ const FilmActionForm = ({ film }) => {
           >
             {/* TODO: align-items */}
             <Box display="flex" alignItems="center" gap={1} mb={3}>
-              <EditNoteIcon
-                sx={{ color: "#8A2BE2", fontSize: { xs: "80px", md: "64px" } }}
-              />
+              <EditNoteIcon sx={{ fontSize: { xs: "80px", md: "64px" } }} />
               <Typography
                 variant="h3"
                 fontWeight="bold"
@@ -71,7 +58,6 @@ const FilmActionForm = ({ film }) => {
                   flexWrap: "wrap",
                   wordBreak: "break-word",
                   lineHeight: "45px",
-                  color: "#8A2BE2",
                 }}
               >
                 edit detail...
@@ -91,7 +77,6 @@ const FilmActionForm = ({ film }) => {
               name="title"
               type="text"
               size="small"
-              required
               defaultValue={film ? film.title : ""}
             />
             {/* TODO: color icon */}
@@ -99,7 +84,6 @@ const FilmActionForm = ({ film }) => {
               name="date"
               type="date"
               size="small"
-              required
               defaultValue={film ? film.date : ""}
             />
             <StyledTextField
@@ -107,7 +91,6 @@ const FilmActionForm = ({ film }) => {
               name="url"
               type="text"
               size="small"
-              required
               defaultValue={film ? film.url : ""}
             />
             <StyledTextField
@@ -116,10 +99,10 @@ const FilmActionForm = ({ film }) => {
               type="text"
               size="small"
               multiline
-              required
+              // required
               defaultValue={film ? film.description : ""}
             />
-            <Box display="flex" justifyContent="flex-end" gap={1} mt={3} mb={1}>
+            <Box display="flex" justifyContent="flex-end" gap={2} mt={3} mb={1}>
               <StyledButton
                 variant="outlined"
                 onClick={() => navigate("..", { relative: "path" })}
