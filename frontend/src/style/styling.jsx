@@ -1,6 +1,7 @@
 import { Button, TextField, styled } from "@mui/material";
 
 export const StyledButton = styled(Button)({
+  padding: "8px 12px",
   wordBreak: "break-word",
   "&.MuiButton-outlined": {
     border: "1px solid #8A2BE2",
@@ -16,6 +17,7 @@ export const StyledButton = styled(Button)({
     border: "1px solid #8A2BE2",
     borderRadius: 20,
     "&:hover": {
+      border: "1px solid #6e22b6",
       backgroundColor: "#6e22b6",
     },
   },

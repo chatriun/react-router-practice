@@ -27,34 +27,34 @@ const FilmItem = ({ film }) => {
       borderRadius={4}
       backgroundColor="white"
     >
-      <Grid xs={12} md={2.5} display="flex" flexDirection="column" gap={2}>
-        <Typography
-          fontSize={{ xs: 0, md: 150, xl: 220 }}
-          lineHeight={{ md: 0.7 }}
-          mb="auto"
-          sx={{ color: "#8A2BE2" }}
-        >
-          ✸
-        </Typography>
-        <Typography
-          variant="h3"
-          fontWeight="bolder"
-          width="100%"
-          textOverflow="ellipsis"
-          lineHeight="42px"
-          overflow="hidden"
-          sx={{ color: "black", wordBreak: "keep-all" }}
-        >
-          {film.title}
-        </Typography>
-      </Grid>
       <Grid
         xs={12}
-        md={3.5}
+        md={4}
+        xl={3}
         display="flex"
         flexDirection="column"
         justifyContent="space-between"
       >
+        <Typography
+          variant="h2"
+          fontWeight="bolder"
+          width="100%"
+          lineHeight="64px"
+          sx={{
+            // TODO:limit content
+            // display: "-webkit-box",
+            // WebkitBoxOrient: "vertical",
+            // WebkitLineClamp: 3,
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+
+            color: "black",
+            wordBreak: "keep-all",
+            marginBottom: 2,
+          }}
+        >
+          {film.title}
+        </Typography>
         <Typography
           variant="body2"
           fontWeight="bold"
@@ -79,7 +79,7 @@ const FilmItem = ({ film }) => {
             sx={{
               flexWrap: "wrap",
               alignItems: "center",
-              gap: "2px",
+              gap: "3px",
             }}
           >
             <ArrowBackIcon fontSize="small" sx={{ color: "#8A2BE2" }} />
@@ -123,12 +123,12 @@ const FilmItem = ({ film }) => {
           </StyledButton>
         </Box>
       </Grid>
-      <Grid xs={12} md={6}>
+      <Grid xs={12} md={8} xl={9}>
         <img
           src={film.url}
           alt={film.title}
           style={{
-            borderRadius: "12px",
+            borderRadius: "24px",
             objectFit: "cover",
             width: "100%",
             aspectRatio: "16/9",
