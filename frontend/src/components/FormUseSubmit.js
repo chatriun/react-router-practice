@@ -49,10 +49,6 @@ const FilmUseSubmitForm = ({ film }) => {
         xs={12}
         md={4}
       >
-        <button type="button" onClick={() => navigate("/films")}>
-          click
-        </button>
-        {/* TODO: useSubmit() */}
         <Form onSubmit={handleSubmit}>
           <Box
             width="100%"
