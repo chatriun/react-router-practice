@@ -19,13 +19,16 @@ const FilmUseSubmitForm = ({ film }) => {
 
   const isSubmit = navigation.state === "submitting";
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   const formData = new FormData(event.target);
-  //   const newFilm = Object.fromEntries(formData.entries());
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const newFilm = Object.fromEntries(formData.entries());
 
-  //   submit(newFilm, { method: "POST" });
-  // };
+    submit(newFilm, {
+      method: "POST",
+      action: "/films/new",
+    });
+  };
 
   return (
     <Grid
@@ -46,9 +49,11 @@ const FilmUseSubmitForm = ({ film }) => {
         xs={12}
         md={4}
       >
+        <button type="button" onClick={() => navigate("/films")}>
+          click
+        </button>
         {/* TODO: useSubmit() */}
-        {/* <Form method="post" onSubmit={handleSubmit}> */}
-        <Form method="post">
+        <Form onSubmit={handleSubmit}>
           <Box
             width="100%"
             display="flex"

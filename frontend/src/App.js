@@ -24,9 +24,7 @@ const router = createBrowserRouter([
       },
       {
         path: "films",
-
         element: <RootFilmLayout />,
-
         children: [
           {
             index: true,

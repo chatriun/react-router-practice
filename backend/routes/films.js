@@ -58,7 +58,6 @@ router.post("/", async (req, res, next) => {
     await add(data);
     res.status(201).json({
       message: "Film saved!",
-      film: data,
     });
   } catch (error) {
     next(error);
