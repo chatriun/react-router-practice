@@ -18,11 +18,9 @@ const FilmsList = ({ film }) => {
           <img
             src={film.url}
             alt={film.title}
-            width="auto"
-            height="100%"
+            width="100%"
             style={{
               objectFit: "cover",
-              aspectRatio: "auto",
               borderRadius: "12px",
               overflow: "hidden",
             }}
