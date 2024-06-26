@@ -8,7 +8,6 @@ import {
 } from "react-router-dom";
 import { StyledButton, StyledTextField } from "../style/styling";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
-import MovieFilterIcon from "@mui/icons-material/MovieFilter";
 import CloseIcon from "@mui/icons-material/Close";
 
 const FilmUseSubmitForm = ({ film }) => {
@@ -61,7 +60,6 @@ const FilmUseSubmitForm = ({ film }) => {
             borderColor="black"
             gap={2}
           >
-            {/* TODO: align-items */}
             <Box display="flex" alignItems="center" gap={1} mb={3}>
               <Typography
                 variant="h3"
@@ -69,14 +67,12 @@ const FilmUseSubmitForm = ({ film }) => {
                 sx={{
                   flexWrap: "wrap",
                   wordBreak: "break-word",
+                  lineHeight: "45px",
                 }}
               >
-                add new film
+                add new film!
               </Typography>
-              <MovieFilterIcon fontSize="large" sx={{ color: "black" }} />
             </Box>
-            {/* </Grid> */}
-            {/* <Grid xs={12} md={4}> */}
             {data && data.errors && (
               <ul>
                 {Object.values(data.errors).map((error) => (
@@ -99,6 +95,12 @@ const FilmUseSubmitForm = ({ film }) => {
               type="date"
               size="small"
               defaultValue={film ? film.date : ""}
+              sx={{
+                "input::-webkit-calendar-picker-indicator": {
+                  backgroundImage:
+                    "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJXaW5kb3dUZXh0IiBkPSJNMjAgM2gtMVYxaC0ydjJIN1YxSDV2Mkg0Yy0xLjEgMC0yIC45LTIgMnYxNmMwIDEuMS45IDIgMiAyaDE2YzEuMSAwIDItLjkgMi0yVjVjMC0xLjEtLjktMi0yLTJ6bTAgMThINFY4aDE2djEzeiIvPjxwYXRoIGZpbGw9Im5vbmUiIGQ9Ik0wIDBoMjR2MjRIMHoiLz48L3N2Zz4=')",
+                },
+              }}
             />
             <StyledTextField
               label="url image"

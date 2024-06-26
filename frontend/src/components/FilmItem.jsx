@@ -1,10 +1,10 @@
 import { Box, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { useNavigate, useSubmit } from "react-router-dom";
+import { StyledButton } from "../style/styling";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import CloseIcon from "@mui/icons-material/Close";
-import { StyledButton } from "../style/styling";
 
 const FilmItem = ({ film }) => {
   const navigate = useNavigate();

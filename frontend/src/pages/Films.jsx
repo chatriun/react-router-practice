@@ -5,10 +5,10 @@ import {
   useNavigate,
   useSearchParams,
 } from "react-router-dom";
-import FilmsList from "../components/FilmsList";
-import { Box, Button, Typography, styled } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { useEffect, useState } from "react";
+import Grid from "@mui/material/Unstable_Grid2/Grid2";
+import { Box, Button, Typography, styled } from "@mui/material";
+import FilmsList from "../components/FilmsList";
 import { StyledButton, StyledTextField } from "../style/styling";
 import AddIcon from "@mui/icons-material/Add";
 import SearchIcon from "@mui/icons-material/Search";

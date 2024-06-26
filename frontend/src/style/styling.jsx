@@ -24,8 +24,6 @@ export const StyledButton = styled(Button)({
 });
 
 export const StyledTextField = styled(TextField)({
-  // TODO: hover?
-  // background: "pink",
   "& label": {
     color: "black",
   },
@@ -36,6 +34,7 @@ export const StyledTextField = styled(TextField)({
   "& .MuiOutlinedInput-root": {
     "& input": {
       color: "black",
+      borderRadius: "12px",
     },
     "& fieldset": {
       borderRadius: "12px",
